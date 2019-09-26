@@ -8,4 +8,5 @@ target 'AppStoreDemo' do
   # Pods for AppStoreDemo
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'SnapKit'
 end
