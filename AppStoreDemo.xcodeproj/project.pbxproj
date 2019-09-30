@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		A468F3AABED58188DDE00DC0 /* Pods_AppStoreDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087221481C4594F426BD21F4 /* Pods_AppStoreDemo.framework */; };
+		A635B1FC2341E85400CD4864 /* AppItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635B1FB2341E85400CD4864 /* AppItemCell.swift */; };
+		A635B1FE2341EB7B00CD4864 /* ViewReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A635B1FD2341EB7B00CD4864 /* ViewReusable.swift */; };
 		A689EB0D2341D048008CEFF6 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689EB0C2341D048008CEFF6 /* ApiManager.swift */; };
 		A689EB152341DEC8008CEFF6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689EB142341DEC8008CEFF6 /* Color.swift */; };
 		A6AE80BA233CC563002E579D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE80B9233CC563002E579D /* AppDelegate.swift */; };
 		A6AE80BE233CC563002E579D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE80BD233CC563002E579D /* ViewController.swift */; };
 		A6AE80C3233CC564002E579D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AE80C2233CC564002E579D /* Assets.xcassets */; };
 		A6AE80C6233CC564002E579D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AE80C4233CC564002E579D /* LaunchScreen.storyboard */; };
+		A6D20B52234217510014F43D /* TopFreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D20B51234217510014F43D /* TopFreeApp.swift */; };
+		A6D20B54234217D60014F43D /* CodableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D20B53234217D60014F43D /* CodableMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		087221481C4594F426BD21F4 /* Pods_AppStoreDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF7894361CAAE4FBC638FF2 /* Pods-AppStoreDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreDemo.release.xcconfig"; path = "Target Support Files/Pods-AppStoreDemo/Pods-AppStoreDemo.release.xcconfig"; sourceTree = "<group>"; };
+		A635B1FB2341E85400CD4864 /* AppItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItemCell.swift; sourceTree = "<group>"; };
+		A635B1FD2341EB7B00CD4864 /* ViewReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewReusable.swift; sourceTree = "<group>"; };
 		A689EB0C2341D048008CEFF6 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A689EB142341DEC8008CEFF6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A6AE80B6233CC563002E579D /* AppStoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +33,8 @@
 		A6AE80C2233CC564002E579D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6AE80C5233CC564002E579D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6AE80C7233CC564002E579D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6D20B51234217510014F43D /* TopFreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFreeApp.swift; sourceTree = "<group>"; };
+		A6D20B53234217D60014F43D /* CodableMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableMapper.swift; sourceTree = "<group>"; };
 		B92FC36C80B6C4009D1C9827 /* Pods-AppStoreDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreDemo.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreDemo/Pods-AppStoreDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +70,7 @@
 		A689EB0F2341DDA6008CEFF6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A635B1FB2341E85400CD4864 /* AppItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -69,6 +78,7 @@
 		A689EB102341DDAB008CEFF6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6D20B51234217510014F43D /* TopFreeApp.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -77,7 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				A689EB0C2341D048008CEFF6 /* ApiManager.swift */,
+				A6D20B53234217D60014F43D /* CodableMapper.swift */,
 				A689EB142341DEC8008CEFF6 /* Color.swift */,
+				A635B1FD2341EB7B00CD4864 /* ViewReusable.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -238,7 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6AE80BE233CC563002E579D /* ViewController.swift in Sources */,
+				A6D20B52234217510014F43D /* TopFreeApp.swift in Sources */,
+				A635B1FC2341E85400CD4864 /* AppItemCell.swift in Sources */,
 				A689EB0D2341D048008CEFF6 /* ApiManager.swift in Sources */,
+				A635B1FE2341EB7B00CD4864 /* ViewReusable.swift in Sources */,
+				A6D20B54234217D60014F43D /* CodableMapper.swift in Sources */,
 				A689EB152341DEC8008CEFF6 /* Color.swift in Sources */,
 				A6AE80BA233CC563002E579D /* AppDelegate.swift in Sources */,
 			);
