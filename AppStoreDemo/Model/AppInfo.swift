@@ -1,5 +1,5 @@
 //
-//  TopFreeApp.swift
+//  AppInfo.swift
 //  AppStoreDemo
 //
 //  Created by FlyKite on 2019/9/30.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopFreeApp: Codable {
+class AppInfo: Codable {
     var appStoreUrl: URL?
     var id: String = ""
     var bundleId: String = ""
@@ -19,11 +19,16 @@ class TopFreeApp: Codable {
     var categoryId: String = ""
     var category: String = ""
     
+    var summary: String = ""
+    var author: String = ""
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name = "im:name"
         case images = "im:image"
         case category
+        case summary
+        case author = "im:artist"
     }
     
     enum IdKeys: String, CodingKey {
@@ -62,6 +67,8 @@ class TopFreeApp: Codable {
         } catch {
             print(error)
         }
+        summary <- (try? map.nestedContainer(keyedBy: ContentKeys.self, forKey: .summary)[.label])
+        author <- (try? map.nestedContainer(keyedBy: ContentKeys.self, forKey: .author)[.label])
     }
 }
 

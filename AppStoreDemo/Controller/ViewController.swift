@@ -36,11 +36,11 @@ class ViewController: UIViewController {
         }
     }()
     
-    private var originalRecommendAppList: [TopFreeApp] = []
-    private var recommendAppList: [TopFreeApp] = []
+    private var originalRecommendAppList: [AppInfo] = []
+    private var recommendAppList: [AppInfo] = []
     
-    private var originalAppList: [TopFreeApp] = []
-    private var appList: [TopFreeApp] = []
+    private var originalAppList: [AppInfo] = []
+    private var appList: [AppInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
             self.loadingView.isHidden = true
             switch result {
             case let .success(json):
-                guard let appList = [TopFreeApp].map(from: json["feed"]["entry"]) else { return }
+                guard let appList = [AppInfo].map(from: json["feed"]["entry"]) else { return }
                 self.originalAppList = appList
                 self.appList = appList
                 self.tableView.reloadData()
@@ -189,7 +189,7 @@ class ViewController: UIViewController {
             self.recommendLoadingView.isHidden = true
             switch result {
             case let .success(json):
-                guard let appList = [TopFreeApp].map(from: json["feed"]["entry"]) else { return }
+                guard let appList = [AppInfo].map(from: json["feed"]["entry"]) else { return }
                 self.originalRecommendAppList = appList
                 self.recommendAppList = appList
                 self.collectionView.reloadData()
@@ -211,9 +211,15 @@ extension ViewController: UISearchBarDelegate {
         } else {
             appList = originalAppList.filter({ (info) -> Bool in
                 return info.name.contains(searchText)
+                    || info.category.contains(searchText)
+                    || info.author.contains(searchText)
+                    || info.summary.contains(searchText)
             })
             recommendAppList = originalRecommendAppList.filter({ (info) -> Bool in
                 return info.name.contains(searchText)
+                    || info.category.contains(searchText)
+                    || info.author.contains(searchText)
+                    || info.summary.contains(searchText)
             })
         }
         collectionView.reloadData()
