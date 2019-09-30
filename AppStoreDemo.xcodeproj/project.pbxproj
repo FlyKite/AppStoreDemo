@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A468F3AABED58188DDE00DC0 /* Pods_AppStoreDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087221481C4594F426BD21F4 /* Pods_AppStoreDemo.framework */; };
+		A689EB0D2341D048008CEFF6 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689EB0C2341D048008CEFF6 /* ApiManager.swift */; };
 		A6AE80BA233CC563002E579D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE80B9233CC563002E579D /* AppDelegate.swift */; };
 		A6AE80BE233CC563002E579D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE80BD233CC563002E579D /* ViewController.swift */; };
 		A6AE80C3233CC564002E579D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AE80C2233CC564002E579D /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* Begin PBXFileReference section */
 		087221481C4594F426BD21F4 /* Pods_AppStoreDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF7894361CAAE4FBC638FF2 /* Pods-AppStoreDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreDemo.release.xcconfig"; path = "Target Support Files/Pods-AppStoreDemo/Pods-AppStoreDemo.release.xcconfig"; sourceTree = "<group>"; };
+		A689EB0C2341D048008CEFF6 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A6AE80B6233CC563002E579D /* AppStoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AE80B9233CC563002E579D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6AE80BD233CC563002E579D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				A6AE80B9233CC563002E579D /* AppDelegate.swift */,
 				A6AE80BD233CC563002E579D /* ViewController.swift */,
+				A689EB0C2341D048008CEFF6 /* ApiManager.swift */,
 				A6AE80C2233CC564002E579D /* Assets.xcassets */,
 				A6AE80C4233CC564002E579D /* LaunchScreen.storyboard */,
 				A6AE80C7233CC564002E579D /* Info.plist */,
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6AE80BE233CC563002E579D /* ViewController.swift in Sources */,
+				A689EB0D2341D048008CEFF6 /* ApiManager.swift in Sources */,
 				A6AE80BA233CC563002E579D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
