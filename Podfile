@@ -9,4 +9,5 @@ target 'AppStoreDemo' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'SnapKit'
+  pod 'SwiftyJSON'
 end
