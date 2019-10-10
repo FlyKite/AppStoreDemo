@@ -39,8 +39,19 @@ class ViewController: UIViewController {
     private var originalRecommendAppList: [AppInfo] = []
     private var recommendAppList: [AppInfo] = []
     
+    private var allLoadedAppList: [AppInfo] = []
     private var originalAppList: [AppInfo] = []
     private var appList: [AppInfo] = []
+    
+    private var isLoadingNextPage: Bool = false
+    private let footerView: UIView = UIView()
+    private let footerLoadingView: UIActivityIndicatorView = {
+        if #available(iOS 13, *) {
+            return UIActivityIndicatorView(style: .large)
+        } else {
+            return UIActivityIndicatorView(style: .gray)
+        }
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +70,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 88
+        tableView.estimatedRowHeight = 88
         tableView.isHidden = true
         tableView.keyboardDismissMode = .onDrag
         
@@ -82,10 +94,13 @@ class ViewController: UIViewController {
         }
         
         tableView.tableHeaderView = headerView
+        tableView.tableFooterView = footerView
         
         topFreeRetryView.retryAction = { [weak self] in
             self?.loadTopFreeApp()
         }
+        
+        footerView.frame = CGRect(x: 0, y: 0, width: 0, height: 64)
         
         view.addSubview(searchBar)
         view.addSubview(tableView)
@@ -96,6 +111,7 @@ class ViewController: UIViewController {
         headerView.addSubview(separator)
         headerView.addSubview(recommendLoadingView)
         headerView.addSubview(recommendRetryView)
+        footerView.addSubview(footerLoadingView)
         
         searchBar.snp.makeConstraints { (make) in
             if #available(iOS 11, *) {
@@ -139,8 +155,16 @@ class ViewController: UIViewController {
             make.height.equalTo(1 / UIScreen.main.scale)
         }
         
+        recommendLoadingView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+        
         recommendRetryView.snp.makeConstraints { (make) in
             make.edges.equalTo(collectionView)
+        }
+        
+        footerLoadingView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
         }
     }
 
@@ -168,8 +192,12 @@ class ViewController: UIViewController {
             switch result {
             case let .success(json):
                 guard let appList = [AppInfo].map(from: json["feed"]["entry"]) else { return }
-                self.originalAppList = appList
-                self.appList = appList
+                self.allLoadedAppList = appList
+                if !appList.isEmpty {
+                    let count = appList.count
+                    self.originalAppList = [AppInfo](appList[0 ..< min(10, count)])
+                    self.appList = self.originalAppList
+                }
                 self.tableView.reloadData()
                 self.tableView.isHidden = false
                 self.searchBar.isHidden = false
@@ -269,6 +297,31 @@ extension ViewController: UITableViewDelegate {
         let info = appList[indexPath.row]
         if let url = info.appStoreUrl, UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.row == originalAppList.count - 1 && !isLoadingNextPage && originalAppList.count < allLoadedAppList.count else { return }
+        isLoadingNextPage = true
+        footerLoadingView.startAnimating()
+        let delay = TimeInterval.random(in: 0.5 ... 1.0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            self.isLoadingNextPage = false
+            self.footerLoadingView.stopAnimating()
+            let currentCount = self.originalAppList.count
+            let afterCount = min(self.allLoadedAppList.count, self.originalAppList.count + 10)
+            self.originalAppList = [AppInfo](self.allLoadedAppList[0 ..< afterCount])
+            self.appList = self.originalAppList
+            var indexPaths: [IndexPath] = []
+            for row in currentCount ..< afterCount {
+                indexPaths.append(IndexPath(row: row, section: 0))
+            }
+            tableView.beginUpdates()
+            tableView.insertRows(at: indexPaths, with: .right)
+            if afterCount == self.allLoadedAppList.count {
+                tableView.tableFooterView?.frame = CGRect.zero
+            }
+            tableView.endUpdates()
         }
     }
 }
