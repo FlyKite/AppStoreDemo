@@ -18,6 +18,7 @@
 		A6AE80C6233CC564002E579D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AE80C4233CC564002E579D /* LaunchScreen.storyboard */; };
 		A6D20B52234217510014F43D /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D20B51234217510014F43D /* AppInfo.swift */; };
 		A6D20B54234217D60014F43D /* CodableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D20B53234217D60014F43D /* CodableMapper.swift */; };
+		A6EBFF58234F5036004916F4 /* RatingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBFF57234F5036004916F4 /* RatingInfo.swift */; };
 		A6F43B7F23423DBB0040D2E1 /* RecommendAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F43B7E23423DBB0040D2E1 /* RecommendAppCell.swift */; };
 		A6F43B812342429C0040D2E1 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F43B802342429C0040D2E1 /* RetryView.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		A6AE80C7233CC564002E579D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6D20B51234217510014F43D /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		A6D20B53234217D60014F43D /* CodableMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableMapper.swift; sourceTree = "<group>"; };
+		A6EBFF57234F5036004916F4 /* RatingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingInfo.swift; sourceTree = "<group>"; };
 		A6F43B7E23423DBB0040D2E1 /* RecommendAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendAppCell.swift; sourceTree = "<group>"; };
 		A6F43B802342429C0040D2E1 /* RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryView.swift; sourceTree = "<group>"; };
 		B92FC36C80B6C4009D1C9827 /* Pods-AppStoreDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreDemo.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreDemo/Pods-AppStoreDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				A6D20B51234217510014F43D /* AppInfo.swift */,
+				A6EBFF57234F5036004916F4 /* RatingInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				A635B1FE2341EB7B00CD4864 /* ViewReusable.swift in Sources */,
 				A6D20B54234217D60014F43D /* CodableMapper.swift in Sources */,
 				A689EB152341DEC8008CEFF6 /* Color.swift in Sources */,
+				A6EBFF58234F5036004916F4 /* RatingInfo.swift in Sources */,
 				A6AE80BA233CC563002E579D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

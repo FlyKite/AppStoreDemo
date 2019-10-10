@@ -19,7 +19,7 @@ enum Api: URLConvertible {
     
     case topGrossing(locale: AppStoreLocale, count: Int)
     case topFree(locale: AppStoreLocale, count: Int)
-    case lookUp(appId: Int, locale: AppStoreLocale)
+    case lookUp(appId: String, locale: AppStoreLocale)
     
     var urlString: String {
         switch self {

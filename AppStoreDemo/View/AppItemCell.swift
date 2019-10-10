@@ -19,10 +19,47 @@ class AppItemCell: UITableViewCell {
         appTypeLabel.text = type
     }
     
+    func startLoadingRating() {
+        ratingLabel.isHidden = true
+        ratingCountLabel.isHidden = true
+        loadingView.isHidden = false
+        loadingView.startAnimating()
+    }
+    
+    func stopLoadingRating(with ratingInfo: RatingInfo?) {
+        loadingView.stopAnimating()
+        loadingView.isHidden = true
+        if let ratingInfo = ratingInfo {
+            ratingLabel.isHidden = false
+            ratingCountLabel.isHidden = false
+            var ratingText = ""
+            var rating = ratingInfo.averageUserRatingForCurrentVersion.rounded()
+            for _ in 0 ..< 5 {
+                if rating >= 1 {
+                    ratingText.append("★")
+                } else {
+                    ratingText.append("☆")
+                }
+                rating -= 1
+            }
+            ratingLabel.text = ratingText
+            ratingCountLabel.text = "(\(ratingInfo.userRatingCountForCurrentVersion))"
+        }
+    }
+    
     private let indexLabel: UILabel = UILabel()
     private let appIconImageView: UIImageView = UIImageView()
     private let appTitleLabel: UILabel = UILabel()
     private let appTypeLabel: UILabel = UILabel()
+    private let ratingLabel: UILabel = UILabel()
+    private let ratingCountLabel: UILabel = UILabel()
+    private let loadingView: UIActivityIndicatorView = {
+        if #available(iOS 13, *) {
+            return UIActivityIndicatorView(style: .medium)
+        } else {
+            return UIActivityIndicatorView(style: .gray)
+        }
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -47,10 +84,19 @@ class AppItemCell: UITableViewCell {
         
         appTypeLabel.font = UIFont.systemFont(ofSize: 13)
         
+        ratingLabel.text = "☆"
+        ratingLabel.font = UIFont.systemFont(ofSize: 10)
+        ratingLabel.textColor = 0xFFBB2A.rgbColor
+        
+        ratingCountLabel.font = UIFont.systemFont(ofSize: 10)
+        
         contentView.addSubview(indexLabel)
         contentView.addSubview(appIconImageView)
         contentView.addSubview(appTitleLabel)
         contentView.addSubview(appTypeLabel)
+        contentView.addSubview(ratingLabel)
+        contentView.addSubview(ratingCountLabel)
+        contentView.addSubview(loadingView)
         
         indexLabel.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(16)
@@ -76,6 +122,21 @@ class AppItemCell: UITableViewCell {
             make.right.lessThanOrEqualToSuperview().offset(-16)
         }
         
+        ratingLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(appTypeLabel.snp.bottom).offset(2)
+            make.left.equalTo(appIconImageView.snp.right).offset(8)
+        }
+        
+        ratingCountLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(ratingLabel.snp.right)
+            make.centerY.equalTo(ratingLabel)
+        }
+        
+        loadingView.snp.makeConstraints { (make) in
+            make.left.equalTo(ratingLabel)
+            make.centerY.equalTo(ratingLabel)
+        }
+        
     }
     
     override func layoutSubviews() {
@@ -83,6 +144,7 @@ class AppItemCell: UITableViewCell {
         
         backgroundColor = colorResource.color(for: .background)
         indexLabel.textColor = colorResource.color(for: .detailTextColor)
+        ratingCountLabel.textColor = colorResource.color(for: .detailTextColor)
         appTitleLabel.textColor = colorResource.color(for: .textColor)
         appTypeLabel.textColor = colorResource.color(for: .detailTextColor)
     }
