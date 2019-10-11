@@ -22,6 +22,10 @@ class AppInfo: Codable {
     var summary: String = ""
     var author: String = ""
     
+    private(set) lazy var ratingGetter: RatingGetter = {
+        return RatingGetter(appId: id)
+    }()
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name = "im:name"

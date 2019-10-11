@@ -52,9 +52,6 @@ class ViewController: UIViewController {
             return UIActivityIndicatorView(style: .gray)
         }
     }()
-    
-    private var ratingInfoLoadingGroupDict: [String: DispatchGroup] = [:]
-    private var ratingInfoDict: [String: RatingInfo] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,36 +228,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    private func loadRating(for appInfo: AppInfo, completion: @escaping (RatingInfo?) -> Void) {
-        DispatchQueue.global().async {
-            if let group = self.ratingInfoLoadingGroupDict[appInfo.id] {
-                group.wait()
-            }
-            if let ratingInfo = self.ratingInfoDict[appInfo.id] {
-                DispatchQueue.main.async {
-                    completion(ratingInfo)
-                }
-            } else {
-                let group = DispatchGroup()
-                self.ratingInfoLoadingGroupDict[appInfo.id] = group
-                group.enter()
-                ApiManager.request(api: Api.lookUp(appId: appInfo.id, locale: .cn)) { (result) in
-                    switch result {
-                    case let .success(json):
-                        let ratingInfo = [RatingInfo].map(from: json["results"])?.first
-                        self.ratingInfoDict[appInfo.id] = ratingInfo
-                        completion(ratingInfo)
-                    case let .failure(error):
-                        print(error)
-                        completion(nil)
-                    }
-                    self.ratingInfoLoadingGroupDict[appInfo.id] = nil
-                    group.leave()
-                }
-            }
-        }
-    }
 
 }
 
@@ -321,7 +288,7 @@ extension ViewController: UITableViewDataSource {
         let info = appList[indexPath.row]
         cell.update(title: info.name, type: info.category, iconUrl: info.images.last?.url, index: indexPath.row)
         cell.startLoadingRating()
-        loadRating(for: info) { [weak cell] (ratingInfo) in
+        info.ratingGetter.loadRatingInfo { [weak cell] (ratingInfo) in
             guard let cell = cell, let currentIndexPath = tableView.indexPath(for: cell), currentIndexPath == indexPath else { return }
             cell.stopLoadingRating(with: ratingInfo)
         }
